@@ -5,10 +5,11 @@ typedef struct Sensor{
     int gpio_port;
     char type;
     char name[100];
+    int value;
 }Sensor;
 
 void gpio_turn_on(Sensor sensor);
 void gpio_turn_off(Sensor sensor);
-int gpio_read(Sensor sensor);
+int gpio_read(Sensor *sensor);
 
 #endif // _INPUT_H_
