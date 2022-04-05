@@ -19,8 +19,7 @@ void socket_configure(int socket_port, char *ip_servidor){
     server_address.sin_family = AF_INET;
     server_address.sin_port = htons( socket_port );
 
-    if(inet_pton(AF_INET, ip_servidor, &server_address.sin_addr)<=0) 
-    {
+    if(inet_pton(AF_INET, ip_servidor, &server_address.sin_addr)<=0) {
         printf("\nInvalid address/ Address not supported \n");
         return;
     }

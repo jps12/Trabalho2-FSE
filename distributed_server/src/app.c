@@ -7,7 +7,6 @@
 #include "gpio.h"
 #include "socket.h"
 
-#define FILE_SIZE 2000
 #define SOCKET_PORT 10140
 
 cJSON *request_json = NULL, *ip_servidor_central;
