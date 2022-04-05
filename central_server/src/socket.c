@@ -11,6 +11,10 @@ typedef struct Connection {
     int socket, opt, address_len;
 }Connection;
 
+void socket_listen(){
+
+}
+
 void socket_configure(int socket_port){
 
     Connection server;
@@ -50,4 +54,6 @@ void socket_configure(int socket_port){
     char buffer[1024];
 
     qtde_read = read(new_socket, buffer, 1024);
+
+    printf("Buufer lido: %s\n", buffer);
 }

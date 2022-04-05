@@ -16,7 +16,6 @@ void app_init(){
 void app_config(){
     char buffer[FILE_CONFIG_SIZE];
     fileio_read_file("assets/config.json", buffer);
-
     config_json = cJSON_Parse(buffer);
-    socket_configure(cJSON_GetObjectItem(config_json, "socker_port")->valueint);
+    socket_configure(cJSON_GetObjectItem(config_json, "socket_port")->valueint);
 }
