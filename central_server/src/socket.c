@@ -11,7 +11,7 @@ typedef struct Connection {
     int socket, opt, address_len;
 }Connection;
 
-void socket_configure(int socket_port, char *ip_servidor){
+void socket_configure(int socket_port){
 
     Connection server;
     server.address_len = sizeof(server.address);
