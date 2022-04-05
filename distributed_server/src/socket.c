@@ -7,7 +7,7 @@
 #include <sys/types.h>
 
 
-struct sockaddr_in local_address, server_address;
+struct sockaddr_in server_address;
 int local_socket, opt = 1;
 
 void socket_configure(int socket_port, char *ip_servidor){
@@ -29,4 +29,9 @@ void socket_configure(int socket_port, char *ip_servidor){
         printf("\nConnection Failed \n");
         return;
     }
+}
+
+void socket_send_string(char *buffer){
+    int teste = send(local_socket, buffer, strlen(buffer), 0);
+    printf("Send %d bytes\n", teste);
 }
