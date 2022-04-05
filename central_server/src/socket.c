@@ -51,9 +51,13 @@ void socket_configure(int socket_port){
         return;
     }
 
-    char buffer[1024];
+    char buffer[3000];
 
-    qtde_read = read(new_socket, buffer, 1024);
+    while (1){
+        qtde_read = read(new_socket, buffer, 3000);
+        printf("Buufer lido: %s\n", buffer);
+        sleep(2);
+        system("clear");
+    }
 
-    printf("Buufer lido: %s\n", buffer);
 }
