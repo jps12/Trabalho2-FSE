@@ -11,7 +11,7 @@ void gpio_turn_off(Sensor sensor) {
   return;
 }
 
-int gpio_read(Sensor sensor) {
-  int value = digitalRead(sensor.gpio_port);
-  return value;
+int gpio_read(Sensor *sensor) {
+  int value = digitalRead(sensor->gpio_port);
+  sensor->value = value;
 }
