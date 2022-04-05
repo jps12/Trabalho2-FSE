@@ -32,6 +32,6 @@ void socket_configure(int socket_port, char *ip_servidor){
 }
 
 void socket_send_string(char *buffer){
-    int teste = send(local_socket, buffer, strlen(buffer), 0);
+    int teste = send(local_socket, (void *)buffer, strlen(buffer), 0);
     printf("Send %d bytes\n", teste);
 }

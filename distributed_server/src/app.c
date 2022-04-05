@@ -22,10 +22,10 @@ void app_init(){
 void *send_sensors_data(void *arg){
     cJSON* inputs = cJSON_CreateArray();
     cJSON* send_json = cJSON_CreateObject(), *send_inputs = NULL;
-    // socket_configure(
-    //     cJSON_GetObjectItem(request_json, "porta_servidor_central")->valueint, 
-    //     cJSON_GetObjectItem(request_json, "ip_servidor_central")->valuestring
-    // );
+    socket_configure(
+        cJSON_GetObjectItem(request_json, "porta_servidor_central")->valueint, 
+        cJSON_GetObjectItem(request_json, "ip_servidor_central")->valuestring
+    );
 
     inputs = cJSON_GetObjectItem(request_json, "inputs");
     send_inputs = cJSON_AddArrayToObject(send_json, "inputs");
@@ -46,8 +46,9 @@ void *send_sensors_data(void *arg){
 
         cJSON_AddItemToArray(send_inputs, item);
     }
-
-    socket_send_string(cJSON_Print(send_inputs));
+    char *string[3000];
+    strcpy(string, cJSON_Print(send_inputs));
+    socket_send_string(string);
     return;
 }
 
@@ -58,7 +59,9 @@ void app_config(){
     char buffer[FILE_SIZE];
     fileio_read_file("assets/config_terreo.json", buffer);
     request_json = cJSON_Parse(buffer);
-    pthread_create(&thread, NULL, &send_sensors_data, NULL);
-    sleep(2);
-    pthread_join(thread, NULL);
+    while (1){
+        pthread_create(&thread, NULL, &send_sensors_data, NULL);
+        sleep(2);
+        pthread_join(thread, NULL);
+    }
 }
